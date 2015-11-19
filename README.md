@@ -154,5 +154,6 @@ FlowRouter.route('/logout', {
 1. 增加可选的邀请码注册
 1. 增加注册渠道统计
 - - -
-#### &&
+
+#### zuihou >
 刚刚开始接触Meteor，这种快速开发的方式很适合早起项目的快速迭代。希望能与在此方向上比较有经验的开发者～一起交流学习~[FAMI开发者之家](mail://sunhannan@fami2u.com)
