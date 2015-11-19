@@ -1,0 +1,142 @@
+<template name="login">
+	<div id="page-account" class="login-single animated fadeInUp ">
+		<div class="login-header " style="{{ facc.headerStyle }}">
+			<div class="lh-back login-header-left">返回</div>
+			账户登录
+		</div>
+		<div class="page-login-body" style="{{ facc.bodyStyle }}">
+			<div class="page-login-form">
+				{{#with accountType 1}}
+				<div class="page-login-row">
+					<input id="laccount" type="email" placeholder="请填写注册的电子邮件">
+					<i class="fa fa-envelope-o"></i>
+				</div>
+				{{/with }}
+				{{#with accountType 2}}
+				<div class="page-login-row">
+					<input id="laccount" type="tel" placeholder="请填写注册的手机号码">
+					<i class="fa fa-mobile"></i>
+				</div>
+				{{/with }}
+				{{#with accountType 3}}
+				<div class="page-login-row">
+					<input id="laccount" type="tel" placeholder="请填写手机号码/电子邮件">
+					<i class="fa fa-envelope-o"></i>
+				</div>
+				{{/with }}
+				<div class="page-login-row">
+					<input id="lpassword" type="password"  placeholder="请填写注册的密码">
+					<i class="fa fa-key"></i>
+				</div>
+				<div class="page-login-btng">
+					<div class="page-login-btn loginBtn ">登录</div>
+				</div>
+			</div>
+			<div class="page-login-register">注册新用户</div>
+			<div class="page-login-forget">忘记密码?</div>
+		</div>
+	</div>
+	<div id="page-forget" class="login-single animated  ">
+		<div class="login-header">
+			找回密码
+			<div class="login-header-right login-page-back"><i class="fa fa-chevron-right"></i></div>
+		</div>
+		<div class="page-login-body">
+			<div class="page-login-form">
+				{{#with accountType 1}}
+				<div class="page-login-row">
+					<input id="faccount" type="email" placeholder="请填写注册的电子邮件">
+					<i class="fa fa-envelope-o"></i>
+				</div>
+				{{/with }}
+				{{#with accountType 2}}
+				<div class="page-login-row">
+					<input id="faccount" type="tel" placeholder="请填写注册的手机号码">
+					<i class="fa fa-mobile"></i>
+				</div>
+				{{/with }}
+				{{#with accountType 3}}
+				<div class="page-login-row">
+					<input id="faccount" type="tel" placeholder="请填写手机号码/电子邮件">
+					<i class="fa fa-envelope-o"></i>
+				</div>
+				{{/with }}
+				<div class="page-login-row">
+					<input id="fcode" type="text"  placeholder="请填写收到的验证码">
+					<i class="fa fa-key"></i>
+				</div>
+				<div class="page-login-btng">
+					<div class="page-login-btn forgetBtn ">发送验证码</div>
+					<div class="page-login-btn forgetLoginBtn ">登录</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="page-reg" class="login-single animated  ">
+		<div class="login-header">
+			注册新用户
+			<div class="login-header-right login-page-back"><i class="fa fa-chevron-right"></i></div>
+		</div>
+		<div class="page-login-body" style="{{ facc.bodyStyle }}">
+			<div class="page-login-form">
+				{{#with accountType 1}}
+				<div class="page-login-row">
+					<input id="account" type="email" placeholder="请填写注册的电子邮件">
+					<i class="fa fa-envelope-o"></i>
+				</div>
+				{{/with }}
+				{{#with accountType 2}}
+				<div class="page-login-row">
+					<input id="account" type="tel" placeholder="请填写注册的手机号码">
+					<i class="fa fa-mobile"></i>
+				</div>
+				{{/with }}
+				{{#with accountType 3}}
+				<div class="page-login-row">
+					<input id="account" type="tel" placeholder="请填写手机号码/电子邮件">
+					<i class="fa fa-envelope-o"></i>
+				</div>
+				{{/with }}
+				{{#with facc.nickname}}
+				<div class="page-login-row">
+					<input id="nickname" type="text" placeholder="请填写您的昵称">
+					<i class="fa fa-user"></i>
+				</div>
+				{{/with }}
+				<div class="page-login-row">
+					<input id="password" type="password"  placeholder="请填写注册的密码">
+					<i class="fa fa-key"></i>
+				</div>
+				<div class="page-login-btng">
+					<div class="page-login-btn regBtn ">注册</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="page-code" class="login-single animated  ">
+		<div class="login-header">
+			验证手机号
+			<div class="login-header-right login-page-back"><i class="fa fa-chevron-right"></i></div>
+		</div>
+		<div class="page-login-body" style="{{ facc.bodyStyle }}">
+			<div class="page-login-form">
+				<div class="page-login-row">
+					<input id="lcode" type="text"  placeholder="验证码已发送到您的手机请查收">
+					<i class="fa fa-key"></i>
+				</div>
+				<div class="page-login-btng">
+					<div class="page-login-btn regBtnWithCode ">验证登录</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="page-login-loading" class="login-single animated fadeIn ">
+		<div class="spinner-bottom">
+			<div class="spinner">
+				<div class="bounce1"></div>
+				<div class="bounce2"></div>
+				<div class="bounce3"></div>
+			</div>
+		</div>
+	</div>
+</template>
