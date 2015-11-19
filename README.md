@@ -6,16 +6,24 @@ Hi ! family of developer :)
 #### 依赖关系
 #####需要在 Meteor add 以下package
 [kadira:flow-router](https://atmospherejs.com/kadira/flow-router)
+
 [meteorhacks:flow-layout](https://atmospherejs.com／meteorhacks／flow-layout)
+
 [materialize:materialize](https://atmospherejs.com/materialize／materialize)
 
 ##### package 中依赖的其它 packages
 [templating](https://atmospherejs.com/templating) ［client］
+
 [natestrauser:animate-css](https://atmospherejs.com/natestrauser／animate-css) ［client］
+
 [fortawesome:fontawesome](https://atmospherejs.com/fortawesome／fontawesome) ［client］
+
 [email](https://atmospherejs.com/email) ［server］
+
 [http](https://atmospherejs.com/http)［server］
+
 [jparker:crypto-md5](https://atmospherejs.com/jparker/crypto-md5)［server］
+
 
 ####SERVER端的配置
 
