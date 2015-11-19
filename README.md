@@ -3,6 +3,13 @@ Hi ! family of developer :)
 欢迎关注
 [FAMI](http://www.fami2u.com)
 ------------------------------
+
+#### 使用方式
+
+ ```
+meteor add fami:account
+```
+
 #### 依赖关系
 #####需要在 Meteor add 以下package
 [kadira:flow-router](https://atmospherejs.com/kadira/flow-router)
