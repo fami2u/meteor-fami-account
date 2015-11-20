@@ -1,6 +1,25 @@
 facc = {
+    _id: "FAMILYOFDEVELOPOER",
     user:function(){
-        return localStorage.getItem(facc._id);
+         // console.log(facc._id);
+        return {
+            "_id":localStorage.getItem(facc._id + "_UID"),
+            "nickname":localStorage.getItem(facc._id+ "_NICK"),
+            "avatar":localStorage.getItem(facc._id+ "_AVATAR"),
+        };
+        // return Session.get(facc._id);
+    },
+    set:function(user){
+        localStorage.setItem(facc._id + "_UID", user._id);
+        localStorage.setItem(facc._id + "_NICK", user.nickname);
+        localStorage.setItem(facc._id + "_AVATAR", user.avatar);
+        // Session.set(facc._id, user);
+    },
+    logout: function() {
+        localStorage.removeItem(facc._id + "_UID");
+        localStorage.removeItem(facc._id + "_NICK");
+        localStorage.removeItem(facc._id + "_AVATAR");
+        // Session.set(facc._id, false);
     },
     attr:function(k,v){
         var user = facc.user();
@@ -12,20 +31,16 @@ facc = {
             return user[k];
         }
     },
-    set:function(user){
-        localStorage.setItem(facc._id, user);
-    },
-    _id: "FAMILYOFDEVELOPOER",
+   
     isGuest: function() {
-        return localStorage.getItem(facc._id) ? false : true;
+        // return localStorage.getItem(facc._id) ? false : true;
+        return Session.get(facc._id) ? false : true;;
     },
     login: function() {
         Session.set("login-referer", FlowRouter.current().route.path);
         FlowRouter.go("/login");
     },
-    logout: function() {
-        localStorage.removeItem(facc._id);
-    },
+    
     //1:email,2:mobile,3:email||mobile
     accountType: 1,
     nickname: true,

@@ -50,8 +50,8 @@ Meteor.methods({
 
         return {
             "_id": uid,
-            "nickname": args.nickname,
-            "avatar": args.avatar,
+            "nickname": user.nickname,
+            "avatar": user.avatar,
         };
     },
     famiRegWithTel: function(args) {
@@ -268,8 +268,8 @@ Meteor.methods({
         var uid = Users.insert(user);
         return {
             "_id": uid,
-            "nickname": args.nickname,
-            "avatar": "/avatar.png",
+            "nickname": user.nickname,
+            "avatar": user.avatar,
         };
     },
     famiForgotWithTel: function(args) {
