@@ -1,6 +1,6 @@
 Package.describe({
     name: 'fami:account',
-    version: '0.0.6',
+    version: '0.0.7',
     summary: 'fami base account',
     git: 'https://github.com/fami2u/meteor-fami-account',
     documentation: 'README.md'
