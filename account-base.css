@@ -1,12 +1,11 @@
 /*css reset from fami project @@NOTINAICS */
-html,body{overflow-x:hidden;color:#333;padding:0px;font-size:14px;background:#fff;}
-body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { padding: 0; margin: 0;font-family: 微软雅黑,宋体} 
+html,body{overflow-x:hidden;padding:0px;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { padding: 0; margin: 0;} 
 table { border-collapse: collapse; border-spacing: 0; } 
 img { border: 0; } 
 ol,ul {  list-style: none;} 
 h1,h2,h3,h4,h5,h6 { font-weight: normal; font-size: 100%; } 
-a{text-decoration:none;font-family:幼圆,"Microsoft YaHei",微软雅黑,"Microsoft JhengHei",华文细黑,STHeiti,MingLiu;color:#333;}
-::selection{background: #333;color: #fff;}
+a{text-decoration:none;}
 input[type="submit"],
 input[type="reset"],
 input[type="button"],
@@ -23,6 +22,7 @@ button { -webkit-appearance: none; }
 ._clear{clear:both;width:100%;}
 ._animation{-webkit-transition: all .3s ease-in-out 0s;transition: all .3s ease-in-out 0s;}
 ._animation:hover{-webkit-transition: all .3s ease-in-out 0s;transition: all .3s ease-in-out 0s;}
+._animation:active{-webkit-transition: all .3s ease-in-out 0s;transition: all .3s ease-in-out 0s;}
 ._flex{
   display: -webkit-box; 
   display: -moz-box;

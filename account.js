@@ -33,8 +33,7 @@ facc = {
     },
    
     isGuest: function() {
-        // return localStorage.getItem(facc._id) ? false : true;
-        return Session.get(facc._id) ? false : true;;
+      return localStorage.getItem(facc._id + "_UID") ? false : true;
     },
     login: function() {
         Session.set("login-referer", FlowRouter.current().route.path);

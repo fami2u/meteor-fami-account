@@ -1,3 +1,5 @@
+facc.insert = function(err,id){console.log("create a account")};
+facc.others = function(){return {}};
 Meteor.methods({
     famiRegWithEmail: function(args) {
         // this.unblock();
@@ -34,7 +36,11 @@ Meteor.methods({
             "point": 0,
             "balance": 0,
         };
-        var uid = Users.insert(user);
+        var others = facc.others;
+        for( var k in others){
+            user[k] = others[k];
+        }
+        var uid = Users.insert(user,facc.insert);
 
         if (facc.email.enable) {
             var code = parseInt(Math.random() * 10000000);
@@ -265,7 +271,11 @@ Meteor.methods({
             "point": 0,
             "balance": 0,
         };
-        var uid = Users.insert(user);
+        var others = facc.others;
+        for( var k in others){
+            user[k] = others[k];
+        }
+        var uid = Users.insert(user,facc.insert);
         return {
             "_id": uid,
             "nickname": user.nickname,
