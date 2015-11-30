@@ -1,5 +1,4 @@
 facc.insert = function(err,id){console.log("create a account")};
-facc.others = function(){return {}};
 Meteor.methods({
     famiRegWithEmail: function(args) {
         // this.unblock();
@@ -7,7 +6,7 @@ Meteor.methods({
             return "ERROR_UNKONE";
         }
 
-        var user = Users.findOne({
+        var user = Meteor.users.findOne({
             email: args.email
         });
 
@@ -15,7 +14,7 @@ Meteor.methods({
             return "ERROR_REPEAT_EMAIL";
         }
 
-        user = Users.findOne({
+        user = Meteor.users.findOne({
             nickname: args.nickname
         });
 
@@ -27,6 +26,7 @@ Meteor.methods({
         var md5 = CryptoJS.MD5(args.password + salt).toString();
         user = {
             "nickname": args.nickname,
+            "username": args.nickname,
             "password": md5,
             "salt": salt,
             "email": args.email,
@@ -36,12 +36,8 @@ Meteor.methods({
             "point": 0,
             "balance": 0,
         };
-        var others = facc.others;
-        for( var k in others){
-            user[k] = others[k];
-        }
-        var uid = Users.insert(user,facc.insert);
-
+        var uid = Meteor.users.insert(user,facc.insert);
+        this.setUserId(uid);
         if (facc.email.enable) {
             var code = parseInt(Math.random() * 10000000);
             var path = "http://" + args.host + "/verfEmail?code=" + code;
@@ -65,7 +61,7 @@ Meteor.methods({
             return "ERROR_UNKONE";
         }
 
-        var user = Users.findOne({
+        var user = Meteor.users.findOne({
             tel: args.tel
         });
 
@@ -73,7 +69,7 @@ Meteor.methods({
             return "ERROR_REPEAT_TEL";
         }
 
-        user = Users.findOne({
+        user = Meteor.users.findOne({
             nickname: args.nickname
         });
 
@@ -117,7 +113,7 @@ Meteor.methods({
             return "ERROR_UNKONE";
         }
 
-        var user = Users.findOne({
+        var user = Meteor.users.findOne({
             email: args.email
         });
 
@@ -147,7 +143,7 @@ Meteor.methods({
             return "ERROR_UNKONE";
         }
 
-        var user = Users.findOne({
+        var user = Meteor.users.findOne({
             tel: args.tel
         });
 
@@ -176,7 +172,7 @@ Meteor.methods({
             return "ERROR_UNKONE";
         }
 
-        var user = Users.findOne({
+        var user = Meteor.users.findOne({
             email: args.email
         });
 
@@ -217,7 +213,7 @@ Meteor.methods({
 
         VaildCodes.remove(vc._id);
 
-        var user = Users.findOne({
+        var user = Meteor.users.findOne({
             email: args.email
         });
 
@@ -242,7 +238,7 @@ Meteor.methods({
         VaildCodes.remove(vc._id);
 
 
-        var user = Users.findOne({
+        var user = Meteor.users.findOne({
             tel: args.tel
         });
 
@@ -250,7 +246,7 @@ Meteor.methods({
             return "ERROR_REPEAT_TEL";
         }
 
-        user = Users.findOne({
+        user = Meteor.users.findOne({
             nickname: args.nickname
         });
 
@@ -262,6 +258,7 @@ Meteor.methods({
         var md5 = CryptoJS.MD5(args.password + salt).toString();
         user = {
             "nickname": args.nickname,
+            "username": args.nickname,
             "password": md5,
             "salt": salt,
             "email": "",
@@ -271,11 +268,9 @@ Meteor.methods({
             "point": 0,
             "balance": 0,
         };
-        var others = facc.others;
-        for( var k in others){
-            user[k] = others[k];
-        }
-        var uid = Users.insert(user,facc.insert);
+       
+        var uid = Meteor.users.insert(user,facc.insert);
+         this.setUserId(uid);
         return {
             "_id": uid,
             "nickname": user.nickname,
@@ -287,7 +282,7 @@ Meteor.methods({
             return "ERROR_UNKONE";
         }
 
-        var user = Users.findOne({
+        var user = Meteor.users.findOne({
             tel: args.tel
         });
 
@@ -340,7 +335,7 @@ Meteor.methods({
 
         VaildCodes.remove(vc._id);
 
-        var user = Users.findOne({
+        var user = Meteor.users.findOne({
             tel: args.tel
         });
 

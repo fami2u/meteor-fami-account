@@ -24,8 +24,7 @@ Template.login.events({
         $("#page-code").removeClass("fadeInUp").addClass("fadeOutDown");
     },
     "click .lh-back": function() {
-        var back = Session.get("login-referer") ? Session.get("login-referer") : "/";
-        FlowRouter.go(back);
+        facc.callback();
     },
     'click .regBtn': function() {
 
@@ -34,7 +33,7 @@ Template.login.events({
         var password = $("#password").val();
 
         if (password.length < 6) {
-            Materialize.toast('密码应大于六位', 2000);
+            alert('密码应大于六位');
             return false;
         }
 
@@ -51,15 +50,15 @@ Template.login.events({
                 }, function(error, result) {
                     if (typeof result == "object") {
                         facc.set(result);
-                        Materialize.toast(nickname + '：欢迎，注册已成功～', 2000);
-                        var back = Session.get("login-referer") ? Session.get("login-referer") : "/";
-                        FlowRouter.go(back);
+
+                        alert(nickname + '：欢迎，注册已成功～');
+                        facc.callback();
                     } else if (result == "ERROR_REPEAT_EMAIL") {
-                        Materialize.toast('邮件地址已存在', 2000);
+                        alert('邮件地址已存在');
                     } else if (result == "ERROR_REPEAT_NICK") {
-                        Materialize.toast('昵称已存在', 2000);
+                        alert('昵称已存在');
                     } else {
-                        Materialize.toast('注册信息错误', 2000);
+                        alert('注册信息错误');
                     }
                     $("#page-login-loading").hide();
                 });
@@ -75,11 +74,11 @@ Template.login.events({
                     if (result == "SUCCESS") {
                         $("#page-code").removeClass("fadeOutDown").addClass("fadeInUp").show();
                     } else if (result == "ERROR_REPEAT_TEL") {
-                        Materialize.toast('手机号码已存在', 2000);
+                        alert('手机号码已存在');
                     } else if (result == "ERROR_REPEAT_NICK") {
-                        Materialize.toast('昵称已存在', 2000);
+                        alert('昵称已存在');
                     } else {
-                        Materialize.toast('注册信息错误', 2000);
+                        alert('注册信息错误');
                     }
                     $("#page-login-loading").hide();
                 });
@@ -94,7 +93,7 @@ Template.login.events({
         var code = $("#lcode").val();
 
         if (code.length < 6) {
-            Materialize.toast('请填写六位验证码', 2000);
+            alert('请填写六位验证码');
             return false;
         }
 
@@ -112,15 +111,14 @@ Template.login.events({
 
                 if (typeof result == "object") {
                     facc.set(result);
-                    Materialize.toast(nickname + '：欢迎，注册已成功～', 2000);
-                    var back = Session.get("login-referer") ? Session.get("login-referer") : "/";
-                    FlowRouter.go(back);
+                    alert(nickname + '：欢迎，注册已成功～');
+                    facc.callback();
                 } else if (result == "ERROR_REPEAT_TEL") {
-                    Materialize.toast('手机号码已存在', 2000);
+                    alert('手机号码已存在');
                 } else if (result == "ERROR_REPEAT_NICK") {
-                    Materialize.toast('昵称已存在', 2000);
+                    alert('昵称已存在');
                 } else {
-                    Materialize.toast('注册信息错误', 2000);
+                    alert('注册信息错误');
                 }
                 $("#page-login-loading").hide();
 
@@ -134,7 +132,7 @@ Template.login.events({
         var password = $("#lpassword").val();
 
         if (password.length < 6) {
-            Materialize.toast('密码应大于六位', 2000);
+            alert('密码应大于六位');
             return false;
         }
 
@@ -149,12 +147,10 @@ Template.login.events({
                 }, function(error, result) {
                     if (typeof result == "object") {
                         facc.set(result);
-                        Materialize.toast(result.nickname + ',欢迎回来', 2000);
-                        var back = Session.get("login-referer") ? Session.get("login-referer") : "/";
-                        console.log(back);
-                        FlowRouter.go(back);
+                        alert(result.nickname + ',欢迎回来');
+                        facc.callback();
                     } else {
-                        Materialize.toast('用户名/密码不匹配', 2000);
+                        alert('用户名/密码不匹配');
                     }
                     $("#page-login-loading").hide();
                 });
@@ -166,12 +162,10 @@ Template.login.events({
                 }, function(error, result) {
                     if (typeof result == "object") {
                         facc.set(result);
-                        Materialize.toast(result.nickname + ',欢迎回来', 2000);
-                        var back = Session.get("login-referer") ? Session.get("login-referer") : "/";
-                        console.log(back);
-                        FlowRouter.go(back);
+                        alert(result.nickname + ',欢迎回来');
+                        facc.callback();
                     } else {
-                        Materialize.toast('用户名/密码不匹配', 2000);
+                        alert('用户名/密码不匹配');
                     }
                     $("#page-login-loading").hide();
                 });
@@ -190,9 +184,9 @@ Template.login.events({
                     if (result.indexOf("ERROR") < 0) {
                         $(".forgetBtn").hide();
                         $(".forgetLoginBtn").show();
-                        Materialize.toast('验证码已发送请注意查收', 2000);
+                        alert('验证码已发送请注意查收');
                     } else {
-                        Materialize.toast('未找到用户', 2000);
+                        alert('未找到用户');
                     }
                     $("#page-login-loading").hide();
                 });
@@ -204,9 +198,9 @@ Template.login.events({
                     if (result.indexOf("ERROR") < 0) {
                         $(".forgetBtn").hide();
                         $(".forgetLoginBtn").show();
-                        Materialize.toast('验证码已发送请注意查收', 2000);
+                        alert('验证码已发送请注意查收');
                     } else {
-                        Materialize.toast('未找到用户', 2000);
+                        alert('未找到用户');
                     }
                     $("#page-login-loading").hide();
                 });
@@ -229,12 +223,10 @@ Template.login.events({
                 }, function(error, result) {
                     if (typeof result == "object") {
                         facc.set(result);
-                        Materialize.toast(result.nickname + ',欢迎回来,请尽快修改密码', 2000);
-                        var back = Session.get("login-referer") ? Session.get("login-referer") : "/";
-                        console.log(back);
-                        FlowRouter.go(back);
+                        alert(result.nickname + ',欢迎回来,请尽快修改密码');
+                        facc.callback();
                     } else {
-                        Materialize.toast('信息错误', 2000);
+                        alert('信息错误');
                     }
                     $("#page-login-loading").hide();
                 });
@@ -246,12 +238,10 @@ Template.login.events({
                 }, function(error, result) {
                     if (typeof result == "object") {
                         facc.set(result);
-                        Materialize.toast(result.nickname + ',欢迎回来,请尽快修改密码', 2000);
-                        var back = Session.get("login-referer") ? Session.get("login-referer") : "/";
-                        console.log(back);
-                        FlowRouter.go(back);
+                        alert(result.nickname + ',欢迎回来,请尽快修改密码');
+                        facc.callback();
                     } else {
-                        Materialize.toast('信息错误', 2000);
+                        alert('信息错误');
                     }
                     $("#page-login-loading").hide();
                 });

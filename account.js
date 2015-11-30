@@ -1,15 +1,16 @@
 facc = {
     _id: "FAMILYOFDEVELOPOER",
-    user:function(){
-         // console.log(facc._id);
+    user: function() {
+        // console.log(facc._id);
         return {
-            "_id":localStorage.getItem(facc._id + "_UID"),
-            "nickname":localStorage.getItem(facc._id+ "_NICK"),
-            "avatar":localStorage.getItem(facc._id+ "_AVATAR"),
+            "_id": localStorage.getItem(facc._id + "_UID"),
+            "nickname": localStorage.getItem(facc._id + "_NICK"),
+            "avatar": localStorage.getItem(facc._id + "_AVATAR"),
         };
         // return Session.get(facc._id);
     },
-    set:function(user){
+    set: function(user) {
+        Meteor.connection.setUserId(user._id);
         localStorage.setItem(facc._id + "_UID", user._id);
         localStorage.setItem(facc._id + "_NICK", user.nickname);
         localStorage.setItem(facc._id + "_AVATAR", user.avatar);
@@ -19,25 +20,16 @@ facc = {
         localStorage.removeItem(facc._id + "_UID");
         localStorage.removeItem(facc._id + "_NICK");
         localStorage.removeItem(facc._id + "_AVATAR");
+        Meteor.logout();
         // Session.set(facc._id, false);
     },
-    attr:function(k,v){
-        var user = facc.user();
-        if(typeof v != "undefined"){
-            user[k] = v;
-            facc.set(user);
-            return true;
-        }else{
-            return user[k];
-        }
-    },
-   
     isGuest: function() {
-      return localStorage.getItem(facc._id + "_UID") ? false : true;
+        return localStorage.getItem(facc._id + "_UID") ? false : true;
     },
-    login: function() {
-        Session.set("login-referer", FlowRouter.current().route.path);
-        FlowRouter.go("/login");
+    callback:function(){},
+    login: function(callback) {
+        Meteor.connection.logout();
+        facc.callback = callback;
     },
     
     //1:email,2:mobile,3:email||mobile
@@ -60,10 +52,10 @@ facc = {
             secretKey: ""
         },
     },
-    sms:{
-        server:'http://222.73.117.158/msg/HttpBatchSendSM?',
-        account:"",
-        pwd:"",
+    sms: {
+        server: 'http://222.73.117.158/msg/HttpBatchSendSM?',
+        account: "",
+        pwd: "",
     },
     email: {
         enable: false,

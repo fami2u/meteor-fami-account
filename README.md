@@ -11,14 +11,8 @@ meteor add fami:account
 ```
 
 #### 依赖关系
-#####需要在 Meteor add 以下package
-[kadira:flow-router](https://atmospherejs.com/kadira/flow-router)
 
-[meteorhacks:flow-layout](https://atmospherejs.com／meteorhacks／flow-layout)
-
-[materialize:materialize](https://atmospherejs.com/materialize／materialize)
-
-##### package 中依赖的其它 packages
+##### package 中依赖 packages
 [templating](https://atmospherejs.com/templating) ［client］
 
 [natestrauser:animate-css](https://atmospherejs.com/natestrauser／animate-css) ［client］
@@ -30,6 +24,8 @@ meteor add fami:account
 [http](https://atmospherejs.com/http)［server］
 
 [jparker:crypto-md5](https://atmospherejs.com/jparker/crypto-md5)［server］
+
+[accounts-base](https://atmospherejs.com/account-base)［client,server］
 
 
 ####SERVER端的配置
@@ -84,7 +80,7 @@ Meteor.startup(function (){
 	
 });
 ```
-####一些会用到的方法
+####除了使用Meteor.user相关的方法外也可以使用以下方法，一些信息被存储在localstorage中一些会用到的方法
 ```
 [CLIENT]facc.user() 
 获取当前用户信息
@@ -118,7 +114,10 @@ Meteor.startup(function (){
 ```
 FlowRouter.triggers.enter([function(context,redirect){
 	if(facc.isGuest()){
-		facc.login();
+		facc.login(function(){
+        	//当注册成功后执行的操作
+        	//callback todos 
+        });
 	}
 }], {except: ["login"]});
 ```
@@ -139,7 +138,6 @@ FlowRouter.route('/logout', {
 ```
 
 ####关于后边将会如何改进
-1. 增加服务端的支持/或增加对account-base的支持
 1. 更多的可自定义样式
 1. 更方便的配置短信与邮箱配置
 1. 整理代码更清晰一些
