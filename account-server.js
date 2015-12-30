@@ -35,9 +35,11 @@ Meteor.methods({
             "avatar": "/avatar.png",
             "point": 0,
             "balance": 0,
+            "isadmin":0,
+            "createAt":new Date(),
         };
         var uid = Meteor.users.insert(user,facc.insert);
-        this.setUserId(uid);
+        
         if (facc.email.enable) {
             var code = parseInt(Math.random() * 10000000);
             var path = "http://" + args.host + "/verfEmail?code=" + code;
@@ -50,11 +52,18 @@ Meteor.methods({
             });
         }
 
+        if(facc.needAdmin == 1){
+            return "ERROR_RIGHT";
+        }
+
+        this.setUserId(uid);
+
         return {
             "_id": uid,
             "nickname": user.nickname,
             "avatar": user.avatar,
         };
+        
     },
     famiRegWithTel: function(args) {
         if ((args.tel == "") || !facc.checkTel(args.tel)) {
@@ -99,6 +108,7 @@ Meteor.methods({
                 }
             },
             function(error, result) {
+                console.log(result);
                 if (!error) {
                     console.log("SMS-RES:" + result.content);
                 } else {
@@ -121,6 +131,9 @@ Meteor.methods({
             return "ERROR_NONE";
         }
 
+        if((facc.needAdmin == 1) && (user.isadmin != 1)){
+            return "ERROR_RIGHT";
+        }
 
         salt = user.salt;
 
@@ -130,6 +143,8 @@ Meteor.methods({
             return "ERROR_PWD";
         }
 
+        
+        this.setUserId(user._id);
 
         return {
             "_id": user._id,
@@ -138,6 +153,7 @@ Meteor.methods({
         };
     },
     famiLoginWithTel: function(args) {
+        console.log(args);
         // this.unblock();
         if ((args.tel == "") || !facc.checkTel(args.tel)) {
             return "ERROR_UNKONE";
@@ -151,6 +167,9 @@ Meteor.methods({
             return "ERROR_NONE";
         }
 
+        if((facc.needAdmin == 1) && (user.isadmin != 1)){
+            return "ERROR_RIGHT";
+        }
 
         salt = user.salt;
 
@@ -160,6 +179,7 @@ Meteor.methods({
             return "ERROR_PWD";
         }
 
+        this.setUserId(user._id);
 
         return {
             "_id": user._id,
@@ -217,6 +237,10 @@ Meteor.methods({
             email: args.email
         });
 
+         if((facc.needAdmin == 1) && (user.isadmin != 1)){
+            return "ERROR_RIGHT";
+        }
+        this.setUserId(user._id);
         return {
             "_id": user._id,
             "nickname": user.nickname,
@@ -267,10 +291,16 @@ Meteor.methods({
             "avatar": "/avatar.png",
             "point": 0,
             "balance": 0,
+            "isadmin":0,
+            "createAt":new Date(),
         };
        
         var uid = Meteor.users.insert(user,facc.insert);
-         this.setUserId(uid);
+        if(facc.needAdmin == 1){
+            return "ERROR_RIGHT";
+        }
+        this.setUserId(uid);
+
         return {
             "_id": uid,
             "nickname": user.nickname,
@@ -313,6 +343,7 @@ Meteor.methods({
                 }
             },
             function(error, result) {
+                console.log(result);
                 if (!error) {
                     console.log("SMS-RES:" + result.content);
                 } else {
@@ -338,6 +369,11 @@ Meteor.methods({
         var user = Meteor.users.findOne({
             tel: args.tel
         });
+
+        if((facc.needAdmin == 1) && (user.isadmin != 1)){
+            return "ERROR_RIGHT";
+        }
+        this.setUserId(user._id);
 
         return {
             "_id": user._id,

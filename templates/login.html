@@ -1,0 +1,42 @@
+<template name="login">
+	<div id="page-account" class="login-single animated fadeInUp ">
+		<div class="login-header " style="{{ facc.headerStyle }}">
+			<a class="lh-back login-header-left" href="{{facc.callback}}">返回</a>
+			账户登录
+		</div>
+		<div class="page-login-body" style="{{ facc.bodyStyle }}">
+			<div class="page-login-form">
+				{{#with accountType 1}}
+				<div class="page-login-row">
+					<input id="laccount" type="email" placeholder="请填写注册的电子邮件">
+					<i class="fa fa-envelope-o"></i>
+				</div>
+				{{/with }}
+				{{#with accountType 2}}
+				<div class="page-login-row">
+					<input id="laccount" type="tel" placeholder="请填写注册的手机号码">
+					<i class="fa fa-mobile"></i>
+				</div>
+				{{/with }}
+				{{#with accountType 3}}
+				<div class="page-login-row">
+					<input id="laccount" type="text" placeholder="请填写手机号码/电子邮件">
+					<i class="fa fa-envelope-o"></i>
+				</div>
+				{{/with }}
+				<div class="page-login-row">
+					<input id="lpassword" type="password"  placeholder="请填写注册的密码">
+					<i class="fa fa-key"></i>
+				</div>
+				<div class="page-login-btng">
+					<div class="page-login-btn loginBtn ">登录</div>
+				</div>
+			</div>
+		
+			<div class="page-login-register">注册新用户</div>
+			<div class="page-login-forget">忘记密码?</div>
+			
+		</div>
+	</div>
+	
+</template>

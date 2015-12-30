@@ -26,12 +26,19 @@ facc = {
     isGuest: function() {
         return localStorage.getItem(facc._id + "_UID") ? false : true;
     },
-    callback:function(){},
+    callback:"/",
+    backto:function(){
+        if(typeof  FlowRouter != "undefined"){
+            FlowRouter.go(facc.callback);
+        }else if(typeof Router != "undefined"){
+            Router.go(facc.callback);
+        }
+        
+    },
     login: function(callback) {
-        Meteor.connection.logout();
         facc.callback = callback;
     },
-    
+    needAdmin:0,
     //1:email,2:mobile,3:email||mobile
     accountType: 1,
     nickname: true,
@@ -72,7 +79,7 @@ facc = {
         return str.match(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/);
     },
     checkTel: function(str) {
-        return str.match(/^(((13[0-9]{1})|159|153)+\d{8})$/);
+       return str.match(/^0?1[3|4|5|8][0-9]\d{8}$/);
     },
     check: function(account) {
         var type = true;
@@ -80,7 +87,7 @@ facc = {
         if ((facc.accountType == 1)) {
             type = "email";
             if ((account == "") || !facc.checkEmail(account)) {
-                Materialize.toast('请填写正确的电子邮件地址', 2000);
+                alert('请填写正确的电子邮件地址');
                 return false;
             }
         }
@@ -88,14 +95,14 @@ facc = {
         if ((facc.accountType == 2)) {
             type = "tel";
             if ((account == "") || !facc.checkTel(account)) {
-                Materialize.toast('请填写正确的手机号码', 2000);
+                alert('请填写正确的手机号码');
                 return false;
             }
         }
 
         if ((facc.accountType == 3)) {
             if ((account == "")) {
-                Materialize.toast('请填写正确的手机号码/电子邮件', 2000);
+                alert('请填写正确的手机号码/电子邮件');
                 return false;
             }
             if (facc.checkEmail(account)) {
@@ -107,7 +114,7 @@ facc = {
         }
 
         if (type == "") {
-            Materialize.toast("请检查您的帐号格式", 2000);
+            alert("请检查您的帐号格式");
             return false;
         }
 

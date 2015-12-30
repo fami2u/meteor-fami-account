@@ -8,24 +8,23 @@ Template.login.helpers({
     accountType: function(t) {
         return facc.accountType == t;
     },
+
 });
 Template.login.events({
     "click .page-login-forget": function() {
-        $("#page-forget").removeClass("fadeOutDown").addClass("fadeInUp").show();
+        $("#page-forget").show();
         $(".forgetBtn").show();
         $(".forgetLoginBtn").hide();
     },
     "click .page-login-register": function() {
-        $("#page-reg").removeClass("fadeOutDown").addClass("fadeInUp").show();
+        $("#page-reg").show();
     },
     "click .login-page-back": function() {
-        $("#page-forget").removeClass("fadeInUp").addClass("fadeOutDown");
-        $("#page-reg").removeClass("fadeInUp").addClass("fadeOutDown");
-        $("#page-code").removeClass("fadeInUp").addClass("fadeOutDown");
+        $("#page-forget").hide();
+        $("#page-reg").hide();
+        $("#page-code").hide();
     },
-    "click .lh-back": function() {
-        facc.callback();
-    },
+    
     'click .regBtn': function() {
 
         var account = $("#account").val();
@@ -52,11 +51,13 @@ Template.login.events({
                         facc.set(result);
 
                         alert(nickname + '：欢迎，注册已成功～');
-                        facc.callback();
+                        facc.backto();
                     } else if (result == "ERROR_REPEAT_EMAIL") {
                         alert('邮件地址已存在');
                     } else if (result == "ERROR_REPEAT_NICK") {
                         alert('昵称已存在');
+                    } else if (result == "ERROR_RIGHT") {
+                        alert('权限不足');
                     } else {
                         alert('注册信息错误');
                     }
@@ -75,7 +76,9 @@ Template.login.events({
                         $("#page-code").removeClass("fadeOutDown").addClass("fadeInUp").show();
                     } else if (result == "ERROR_REPEAT_TEL") {
                         alert('手机号码已存在');
-                    } else if (result == "ERROR_REPEAT_NICK") {
+                    }else if (result == "ERROR_RIGHT") {
+                        alert('权限不足');
+                    }  else if (result == "ERROR_REPEAT_NICK") {
                         alert('昵称已存在');
                     } else {
                         alert('注册信息错误');
@@ -112,7 +115,9 @@ Template.login.events({
                 if (typeof result == "object") {
                     facc.set(result);
                     alert(nickname + '：欢迎，注册已成功～');
-                    facc.callback();
+                    facc.backto();
+                } else if (result == "ERROR_RIGHT") {
+                        alert('权限不足');
                 } else if (result == "ERROR_REPEAT_TEL") {
                     alert('手机号码已存在');
                 } else if (result == "ERROR_REPEAT_NICK") {
@@ -148,8 +153,10 @@ Template.login.events({
                     if (typeof result == "object") {
                         facc.set(result);
                         alert(result.nickname + ',欢迎回来');
-                        facc.callback();
-                    } else {
+                        facc.backto();
+                    }  else if (result == "ERROR_RIGHT") {
+                        alert('权限不足');
+                } else {
                         alert('用户名/密码不匹配');
                     }
                     $("#page-login-loading").hide();
@@ -163,8 +170,10 @@ Template.login.events({
                     if (typeof result == "object") {
                         facc.set(result);
                         alert(result.nickname + ',欢迎回来');
-                        facc.callback();
-                    } else {
+                        facc.backto();
+                    }  else if (result == "ERROR_RIGHT") {
+                        alert('权限不足');
+                } else {
                         alert('用户名/密码不匹配');
                     }
                     $("#page-login-loading").hide();
@@ -224,7 +233,7 @@ Template.login.events({
                     if (typeof result == "object") {
                         facc.set(result);
                         alert(result.nickname + ',欢迎回来,请尽快修改密码');
-                        facc.callback();
+                        facc.backto();
                     } else {
                         alert('信息错误');
                     }
@@ -239,7 +248,7 @@ Template.login.events({
                     if (typeof result == "object") {
                         facc.set(result);
                         alert(result.nickname + ',欢迎回来,请尽快修改密码');
-                        facc.callback();
+                        facc.backto();
                     } else {
                         alert('信息错误');
                     }

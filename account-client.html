@@ -1,7 +1,7 @@
 <template name="login">
 	<div id="page-account" class="login-single animated fadeInUp ">
 		<div class="login-header " style="{{ facc.headerStyle }}">
-			<div class="lh-back login-header-left">返回</div>
+			<a class="lh-back login-header-left" href="{{facc.callback}}">返回</a>
 			账户登录
 		</div>
 		<div class="page-login-body" style="{{ facc.bodyStyle }}">
@@ -32,12 +32,14 @@
 					<div class="page-login-btn loginBtn ">登录</div>
 				</div>
 			</div>
+		
 			<div class="page-login-register">注册新用户</div>
 			<div class="page-login-forget">忘记密码?</div>
+			
 		</div>
 	</div>
 	<div id="page-forget" class="login-single animated  ">
-		<div class="login-header">
+		<div class="login-header" style="{{ facc.headerStyle }}">
 			找回密码
 			<div class="login-header-right login-page-back"><i class="fa fa-chevron-right"></i></div>
 		</div>
@@ -73,7 +75,7 @@
 		</div>
 	</div>
 	<div id="page-reg" class="login-single animated  ">
-		<div class="login-header">
+		<div class="login-header" style="{{ facc.headerStyle }}">
 			注册新用户
 			<div class="login-header-right login-page-back"><i class="fa fa-chevron-right"></i></div>
 		</div>
@@ -114,7 +116,7 @@
 		</div>
 	</div>
 	<div id="page-code" class="login-single animated  ">
-		<div class="login-header">
+		<div class="login-header" style="{{ facc.headerStyle }}">
 			验证手机号
 			<div class="login-header-right login-page-back"><i class="fa fa-chevron-right"></i></div>
 		</div>
